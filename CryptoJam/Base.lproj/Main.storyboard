@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="8zr-8o-laq">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Item 4-->
+        <scene sceneID="LmD-rB-mY6">
+            <objects>
+                <viewController id="TOB-ed-PoG" userLabel="Item 4" customClass="BuySellViewController" customModule="CryptoJam" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="soF-d7-LpW"/>
+                        <viewControllerLayoutGuide type="bottom" id="rT9-AR-1xY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="d9q-7R-ITZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Loading Price 2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ozn-mD-e5L">
+                                <frame key="frameInset" minY="235" width="375" height="196"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Buy/Sell" id="xcU-vI-84I" userLabel="Item 4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GbN-tY-RTa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1436" y="209"/>
+        </scene>
+        <!--View Price-->
+        <scene sceneID="4Qa-l3-0Vd">
+            <objects>
+                <viewController id="kZN-v6-dbg" customClass="PriceDisplayViewController" customModule="CryptoJam" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="K6q-fK-HdN"/>
+                        <viewControllerLayoutGuide type="bottom" id="Z2O-47-jS4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="A8b-YH-w4b">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Loading Price 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cWo-S0-x34">
+                                <frame key="frameInset" minY="235" width="375" height="196"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="View Price" id="nNY-pM-eSa"/>
+                    <connections>
+                        <outlet property="ethPriceLabel" destination="cWo-S0-x34" id="HgL-6z-PB2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XxA-C5-zK9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1436" y="-536"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="t9A-Um-UUL">
+            <objects>
+                <tabBarController id="8zr-8o-laq" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="RZ1-ly-0Cl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="kZN-v6-dbg" kind="relationship" relationship="viewControllers" id="Gjx-a5-N5r"/>
+                        <segue destination="TOB-ed-PoG" kind="relationship" relationship="viewControllers" id="TK4-j6-VML"/>
+                        <segue destination="vvP-bs-2y6" kind="relationship" relationship="viewControllers" id="f5m-5S-nn6"/>
+                        <segue destination="e6L-Ha-ZJN" kind="relationship" relationship="viewControllers" id="TZl-fb-SqE"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JFz-F4-wWN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="215" y="-192"/>
+        </scene>
+        <!--Add Money-->
+        <scene sceneID="uUP-w9-FYt">
+            <objects>
+                <viewController id="vvP-bs-2y6" customClass="AddMoneyViewController" customModule="CryptoJam" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3o3-Ed-hke"/>
+                        <viewControllerLayoutGuide type="bottom" id="9cA-rT-gcL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="yln-fH-2OX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Page 3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G6Z-Bk-c5G">
+                                <frame key="frameInset" minY="235" width="375" height="196"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Add Money" id="e8t-vQ-ggh"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Aj-QR-1FF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1436" y="988"/>
+        </scene>
+        <!--Item 3-->
+        <scene sceneID="7VV-VC-GGS">
+            <objects>
+                <viewController id="e6L-Ha-ZJN" userLabel="Item 3" customClass="StatisticsViewController" customModule="CryptoJam" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="w3a-CY-OJw"/>
+                        <viewControllerLayoutGuide type="bottom" id="HdC-sg-AeU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="HCm-Eg-31F">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Page 4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S4R-8s-TqO">
+                                <frame key="frameInset" minY="225" width="375" height="196"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Statistics" id="p3Z-XJ-hnn" userLabel="Item 3"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="u4q-fh-D3v" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="455" y="987"/>
+        </scene>
+    </scenes>
+</document>
