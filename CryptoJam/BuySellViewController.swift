@@ -7,11 +7,21 @@
 //
 
 import Foundation
-class BuySellViewController: ViewController {
+import UIKit
+
+class BuySellViewController: ViewController, UITextFieldDelegate {
+    
+    override func viewDidLoad() {
+        moneyAmount.delegate = self
+        moneyAmount.keyboardType = UIKeyboardType.decimalPad
+    }
+    
+
+    @IBOutlet weak var moneyAmount: UITextField!
+    
     override func dataReady() {
         print("dataReady in buy sell view controller")
     }
-
     
     
 }

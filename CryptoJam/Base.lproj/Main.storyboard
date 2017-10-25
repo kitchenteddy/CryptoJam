@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,21 +19,40 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Loading Price 2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ozn-mD-e5L">
-                                <frame key="frameInset" minY="235" width="375" height="196"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0SC-q9-ieA">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="217" id="mTT-be-ads"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading Price 2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ozn-mD-e5L">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="196" id="l4f-C0-cIZ"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ozn-mD-e5L" firstAttribute="top" secondItem="soF-d7-LpW" secondAttribute="bottom" constant="8" symbolic="YES" id="SAZ-AF-ing"/>
+                            <constraint firstItem="ozn-mD-e5L" firstAttribute="leading" secondItem="d9q-7R-ITZ" secondAttribute="leading" id="Wzy-x3-c2S"/>
+                            <constraint firstItem="0SC-q9-ieA" firstAttribute="leading" secondItem="d9q-7R-ITZ" secondAttribute="leadingMargin" id="jOR-tQ-9CK"/>
+                            <constraint firstAttribute="trailing" secondItem="ozn-mD-e5L" secondAttribute="trailing" id="nBo-br-qg0"/>
+                            <constraint firstItem="0SC-q9-ieA" firstAttribute="centerY" secondItem="d9q-7R-ITZ" secondAttribute="centerY" id="rGP-1Z-xzQ"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Buy/Sell" id="xcU-vI-84I" userLabel="Item 4"/>
+                    <connections>
+                        <outlet property="AmountField" destination="0SC-q9-ieA" id="hY9-Pq-HUC"/>
+                        <outlet property="moneyAmount" destination="0SC-q9-ieA" id="Nzb-RL-nnd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GbN-tY-RTa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1436" y="209"/>
+            <point key="canvasLocation" x="1436" y="208.24587706146929"/>
         </scene>
         <!--View Price-->
         <scene sceneID="4Qa-l3-0Vd">
@@ -93,21 +113,42 @@
                         <viewControllerLayoutGuide type="top" id="3o3-Ed-hke"/>
                         <viewControllerLayoutGuide type="bottom" id="9cA-rT-gcL"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="yln-fH-2OX">
+                    <view key="view" contentMode="scaleToFill" id="yln-fH-2OX" customClass="UIControl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Page 3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G6Z-Bk-c5G">
-                                <frame key="frameInset" minY="235" width="375" height="196"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Page 3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G6Z-Bk-c5G">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="196" id="FUw-pw-YX1"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ol8-CB-zTu">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="217" id="OFY-9x-VX6"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Ol8-CB-zTu" firstAttribute="centerY" secondItem="yln-fH-2OX" secondAttribute="centerY" id="0ZX-An-7rn"/>
+                            <constraint firstItem="G6Z-Bk-c5G" firstAttribute="top" secondItem="3o3-Ed-hke" secondAttribute="bottom" id="6ZH-cv-byy"/>
+                            <constraint firstItem="Ol8-CB-zTu" firstAttribute="leading" secondItem="yln-fH-2OX" secondAttribute="leadingMargin" id="jWw-0i-MDO"/>
+                            <constraint firstAttribute="trailing" secondItem="G6Z-Bk-c5G" secondAttribute="trailing" id="vkB-Hk-9hP"/>
+                            <constraint firstItem="G6Z-Bk-c5G" firstAttribute="leading" secondItem="yln-fH-2OX" secondAttribute="leading" id="yT3-ch-byJ"/>
+                        </constraints>
+                        <connections>
+                            <action selector="userTappedBackgroundWithSender:" destination="vvP-bs-2y6" eventType="touchDown" id="S8E-Wy-iPj"/>
+                        </connections>
                     </view>
                     <tabBarItem key="tabBarItem" title="Add Money" id="e8t-vQ-ggh"/>
+                    <connections>
+                        <outlet property="AddMoneyTextField" destination="Ol8-CB-zTu" id="eFJ-3D-ASa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Aj-QR-1FF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
