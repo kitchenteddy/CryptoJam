@@ -88,6 +88,7 @@
 		653E0A4C1F912C7E00A99003 /* CryptoJam */ = {
 			isa = PBXGroup;
 			children = (
+				653E0A511F912C7F00A99003 /* Main.storyboard */,
 				653E0A4F1F912C7E00A99003 /* ViewController.swift */,
 				6511CFDA1F9ED0630009B934 /* ViewControllers */,
 				65EFBA671F9E772C005A401D /* TransactionHandler.swift */,
@@ -95,7 +96,6 @@
 				6564F2A91F914890004201AC /* WebManagerDelegate.swift */,
 				653E0A5F1F912D6300A99003 /* WebDataManager.swift */,
 				6511CFD51F9EC8B10009B934 /* StringUtils.swift */,
-				653E0A511F912C7F00A99003 /* Main.storyboard */,
 				653E0A541F912C7F00A99003 /* Assets.xcassets */,
 				653E0A561F912C7F00A99003 /* LaunchScreen.storyboard */,
 				653E0A591F912C7F00A99003 /* Info.plist */,

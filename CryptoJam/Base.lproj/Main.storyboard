@@ -19,13 +19,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0SC-q9-ieA">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="217" id="mTT-be-ads"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading Price 2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ozn-mD-e5L">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="196" id="l4f-C0-cIZ"/>
@@ -39,16 +32,10 @@
                         <constraints>
                             <constraint firstItem="ozn-mD-e5L" firstAttribute="top" secondItem="soF-d7-LpW" secondAttribute="bottom" constant="8" symbolic="YES" id="SAZ-AF-ing"/>
                             <constraint firstItem="ozn-mD-e5L" firstAttribute="leading" secondItem="d9q-7R-ITZ" secondAttribute="leading" id="Wzy-x3-c2S"/>
-                            <constraint firstItem="0SC-q9-ieA" firstAttribute="leading" secondItem="d9q-7R-ITZ" secondAttribute="leadingMargin" id="jOR-tQ-9CK"/>
                             <constraint firstAttribute="trailing" secondItem="ozn-mD-e5L" secondAttribute="trailing" id="nBo-br-qg0"/>
-                            <constraint firstItem="0SC-q9-ieA" firstAttribute="centerY" secondItem="d9q-7R-ITZ" secondAttribute="centerY" id="rGP-1Z-xzQ"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Buy/Sell" id="xcU-vI-84I" userLabel="Item 4"/>
-                    <connections>
-                        <outlet property="AmountField" destination="0SC-q9-ieA" id="hY9-Pq-HUC"/>
-                        <outlet property="moneyAmount" destination="0SC-q9-ieA" id="Nzb-RL-nnd"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GbN-tY-RTa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -117,29 +104,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Page 3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G6Z-Bk-c5G">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ol8-CB-zTu">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="196" id="FUw-pw-YX1"/>
+                                    <constraint firstAttribute="width" constant="217" id="atk-Qt-oIt"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" keyboardAppearance="alert"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Money" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zcP-rS-xij">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="61" id="fI8-9A-Top"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ol8-CB-zTu">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Amount" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G6Z-Bk-c5G">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="217" id="OFY-9x-VX6"/>
+                                    <constraint firstAttribute="height" constant="40" id="K0a-GF-hWe"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Ol8-CB-zTu" firstAttribute="centerY" secondItem="yln-fH-2OX" secondAttribute="centerY" id="0ZX-An-7rn"/>
-                            <constraint firstItem="G6Z-Bk-c5G" firstAttribute="top" secondItem="3o3-Ed-hke" secondAttribute="bottom" id="6ZH-cv-byy"/>
-                            <constraint firstItem="Ol8-CB-zTu" firstAttribute="leading" secondItem="yln-fH-2OX" secondAttribute="leadingMargin" id="jWw-0i-MDO"/>
-                            <constraint firstAttribute="trailing" secondItem="G6Z-Bk-c5G" secondAttribute="trailing" id="vkB-Hk-9hP"/>
-                            <constraint firstItem="G6Z-Bk-c5G" firstAttribute="leading" secondItem="yln-fH-2OX" secondAttribute="leading" id="yT3-ch-byJ"/>
+                            <constraint firstItem="zcP-rS-xij" firstAttribute="centerX" secondItem="yln-fH-2OX" secondAttribute="centerX" id="032-zq-gBp"/>
+                            <constraint firstItem="G6Z-Bk-c5G" firstAttribute="leading" secondItem="yln-fH-2OX" secondAttribute="leadingMargin" id="JfS-dS-Ec2"/>
+                            <constraint firstItem="G6Z-Bk-c5G" firstAttribute="leading" secondItem="Ol8-CB-zTu" secondAttribute="leading" id="NrX-Lh-3rI"/>
+                            <constraint firstItem="Ol8-CB-zTu" firstAttribute="centerY" secondItem="yln-fH-2OX" secondAttribute="centerY" id="XNg-Z6-WcK"/>
+                            <constraint firstItem="Ol8-CB-zTu" firstAttribute="top" secondItem="G6Z-Bk-c5G" secondAttribute="bottom" constant="9" id="gMG-CK-5y3"/>
+                            <constraint firstItem="zcP-rS-xij" firstAttribute="top" secondItem="3o3-Ed-hke" secondAttribute="bottom" constant="8" symbolic="YES" id="nKb-xL-8bA"/>
                         </constraints>
                         <connections>
                             <action selector="userTappedBackgroundWithSender:" destination="vvP-bs-2y6" eventType="touchDown" id="S8E-Wy-iPj"/>
@@ -152,7 +148,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Aj-QR-1FF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1436" y="988"/>
+            <point key="canvasLocation" x="1436" y="987.25637181409309"/>
         </scene>
         <!--Item 3-->
         <scene sceneID="7VV-VC-GGS">
@@ -167,7 +163,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Page 4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S4R-8s-TqO">
-                                <frame key="frameInset" minY="225" width="375" height="196"/>
+                                <frame key="frameInset" minX="113" minY="303" width="148" height="61"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <nil key="textColor"/>
@@ -180,7 +176,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u4q-fh-D3v" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="455" y="987"/>
+            <point key="canvasLocation" x="453.60000000000002" y="986.35682158920542"/>
         </scene>
     </scenes>
 </document>
