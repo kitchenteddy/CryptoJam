@@ -127,15 +127,36 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XuC-JZ-W5l">
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Add Funds"/>
+                                <connections>
+                                    <action selector="addFunds:" destination="vvP-bs-2y6" eventType="touchUpInside" id="avz-ca-6cU"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ht1-qb-Lnt">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="VSH-NT-r02"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="zcP-rS-xij" firstAttribute="centerX" secondItem="yln-fH-2OX" secondAttribute="centerX" id="032-zq-gBp"/>
+                            <constraint firstItem="XuC-JZ-W5l" firstAttribute="top" secondItem="Ht1-qb-Lnt" secondAttribute="bottom" constant="8" symbolic="YES" id="JB7-Wq-Ll8"/>
                             <constraint firstItem="G6Z-Bk-c5G" firstAttribute="leading" secondItem="yln-fH-2OX" secondAttribute="leadingMargin" id="JfS-dS-Ec2"/>
                             <constraint firstItem="G6Z-Bk-c5G" firstAttribute="leading" secondItem="Ol8-CB-zTu" secondAttribute="leading" id="NrX-Lh-3rI"/>
+                            <constraint firstItem="XuC-JZ-W5l" firstAttribute="leading" secondItem="Ht1-qb-Lnt" secondAttribute="leading" id="OR3-Sd-Uol"/>
                             <constraint firstItem="Ol8-CB-zTu" firstAttribute="centerY" secondItem="yln-fH-2OX" secondAttribute="centerY" id="XNg-Z6-WcK"/>
+                            <constraint firstItem="Ht1-qb-Lnt" firstAttribute="leading" secondItem="G6Z-Bk-c5G" secondAttribute="leading" id="aID-2E-pP3"/>
+                            <constraint firstItem="Ht1-qb-Lnt" firstAttribute="trailing" secondItem="Ol8-CB-zTu" secondAttribute="trailing" id="ef2-uF-Z6w"/>
                             <constraint firstItem="Ol8-CB-zTu" firstAttribute="top" secondItem="G6Z-Bk-c5G" secondAttribute="bottom" constant="9" id="gMG-CK-5y3"/>
                             <constraint firstItem="zcP-rS-xij" firstAttribute="top" secondItem="3o3-Ed-hke" secondAttribute="bottom" constant="8" symbolic="YES" id="nKb-xL-8bA"/>
+                            <constraint firstItem="Ht1-qb-Lnt" firstAttribute="top" secondItem="zcP-rS-xij" secondAttribute="bottom" constant="80" id="r1b-tm-j4P"/>
+                            <constraint firstItem="G6Z-Bk-c5G" firstAttribute="top" secondItem="XuC-JZ-W5l" secondAttribute="bottom" constant="9" id="sqF-BE-K9n"/>
                         </constraints>
                         <connections>
                             <action selector="userTappedBackgroundWithSender:" destination="vvP-bs-2y6" eventType="touchDown" id="S8E-Wy-iPj"/>
@@ -143,7 +164,8 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Add Money" id="e8t-vQ-ggh"/>
                     <connections>
-                        <outlet property="AddMoneyTextField" destination="Ol8-CB-zTu" id="eFJ-3D-ASa"/>
+                        <outlet property="addMoneyTextField" destination="Ol8-CB-zTu" id="Ldq-99-XbW"/>
+                        <outlet property="currentFundsTextField" destination="Ht1-qb-Lnt" id="cxh-7C-CgK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Aj-QR-1FF" userLabel="First Responder" sceneMemberID="firstResponder"/>

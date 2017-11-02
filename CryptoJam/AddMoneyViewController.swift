@@ -11,8 +11,9 @@ import UIKit
 class AddMoneyViewController: ViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
-        AddMoneyTextField.delegate = self
-        AddMoneyTextField.keyboardType = UIKeyboardType.decimalPad
+        addMoneyTextField.delegate = self
+        addMoneyTextField.keyboardType = UIKeyboardType.decimalPad
+        setCurrentFundsDisplay()
     }
     
     func textField(_ textField: UITextField,
@@ -39,12 +40,52 @@ class AddMoneyViewController: ViewController, UITextFieldDelegate {
                     prospectiveText.characters.count <= 8
     }
     
-    @IBOutlet weak var AddMoneyTextField: UITextField!
+
+    @IBOutlet weak var addMoneyTextField: UITextField!
+    
+    @IBOutlet weak var currentFundsTextField: UILabel!
     
     @IBAction func userTappedBackground(sender: AnyObject) {
         print("USER TAPPED BACKGROUND")
         view.endEditing(true)
     }
+    
+    @IBAction func addFunds(_ sender: AnyObject) {
+        guard let rawText = addMoneyTextField.text else{
+            print("no text")
+            return
+        }
+        
+        guard let amount = Double(rawText) else {
+            print("text is invalid double")
+            return
+        }
+        
+        
+        let defaults = UserDefaults()
+        let existingFunds = defaults.double(forKey: "currentFunds")
+        defaults.set(amount + existingFunds, forKey: "currentFunds")
+        print("Current Funds: \(defaults.double(forKey: "currentFunds"))")
+        addMoneyTextField.text = ""
+        
+        
+        setCurrentFundsDisplay()
+        
+    }
+    
+    
+    func setCurrentFundsDisplay() {
+        
+        let defaults = UserDefaults()
+        let currentFunds = defaults.double(forKey: "currentFunds")
+        
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        if let formattedTipAmount = formatter.string(from: currentFunds as NSNumber) {
+            currentFundsTextField.text = formattedTipAmount
+        }
+    }
+    
     
     override func dataReady() {
         print("dataReady in add money view controller")
