@@ -61,14 +61,9 @@ class AddMoneyViewController: ViewController, UITextFieldDelegate {
             return
         }
         
-        
-        let defaults = UserDefaults()
-        let existingFunds = defaults.double(forKey: "currentFunds")
-        defaults.set(amount + existingFunds, forKey: "currentFunds")
-        print("Current Funds: \(defaults.double(forKey: "currentFunds"))")
+        let txnHandler = TransactionHandler()
+        txnHandler.addDollars(amount: amount)
         addMoneyTextField.text = ""
-        
-        
         setCurrentFundsDisplay()
         
     }

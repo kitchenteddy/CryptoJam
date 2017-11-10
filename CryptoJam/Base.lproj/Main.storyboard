@@ -19,23 +19,64 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading Price 2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ozn-mD-e5L">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="196" id="l4f-C0-cIZ"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0.00" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u3i-l5-Rm0">
+                                <frame key="frameInset" minX="35" minY="169" width="195" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Buy Ether for $0.00 Each" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5tM-em-dxV">
+                                <frame key="frameInset" minX="16" minY="28" width="227" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uOA-BV-YBy">
+                                <frame key="frameInset" minX="16" minY="93" width="41" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Buy"/>
+                                <connections>
+                                    <action selector="executeTxn:" destination="TOB-ed-PoG" eventType="touchUpInside" id="kFL-YZ-uad"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OgA-jf-4m9">
+                                <frame key="frameInset" minX="16" minY="131" width="175" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Enter Max"/>
+                                <connections>
+                                    <action selector="enterMaxValue:" destination="TOB-ed-PoG" eventType="touchUpInside" id="qGg-QQ-pKl"/>
+                                </connections>
+                            </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="YD9-El-lRk">
+                                <frame key="frameInset" minX="16" minY="57" width="192" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Buy"/>
+                                    <segment title="Sell"/>
+                                </segments>
+                                <connections>
+                                    <action selector="buySellSegmentedAction:" destination="TOB-ed-PoG" eventType="valueChanged" id="X8A-FB-y0L"/>
+                                </connections>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZZU-3u-Uho">
+                                <frame key="frameInset" minX="16" minY="174" width="11" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="ozn-mD-e5L" firstAttribute="top" secondItem="soF-d7-LpW" secondAttribute="bottom" constant="8" symbolic="YES" id="SAZ-AF-ing"/>
-                            <constraint firstItem="ozn-mD-e5L" firstAttribute="leading" secondItem="d9q-7R-ITZ" secondAttribute="leading" id="Wzy-x3-c2S"/>
-                            <constraint firstAttribute="trailing" secondItem="ozn-mD-e5L" secondAttribute="trailing" id="nBo-br-qg0"/>
-                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Buy/Sell" id="xcU-vI-84I" userLabel="Item 4"/>
+                    <connections>
+                        <outlet property="buySellSegmentedControl" destination="YD9-El-lRk" id="bdp-hE-et2"/>
+                        <outlet property="txnLabel" destination="5tM-em-dxV" id="uxQ-jo-qrp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GbN-tY-RTa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

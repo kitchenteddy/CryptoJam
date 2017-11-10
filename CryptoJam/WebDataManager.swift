@@ -8,7 +8,11 @@
 import Foundation
 import SwiftyJSON
 
+
+
+//This is a class for creating objects to download and review web data for Crypto Currencies
 class WebDataManager: NSObject {
+    //
     var data: String?
     var ethPrice: Double?
     var delegate: WebManagerDelegate
@@ -22,8 +26,6 @@ class WebDataManager: NSObject {
     func startUrlSession(){
 
         let ephemeralConfiguration = URLSessionConfiguration.ephemeral
-        
-
         let sessionWithoutADelegate = URLSession(configuration: ephemeralConfiguration)
         if let url = URL(string:"https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD") {
             (sessionWithoutADelegate.dataTask(with: url) { (data, response, error) in
@@ -36,18 +38,18 @@ class WebDataManager: NSObject {
                     
                     self .setEthPriceFromData(info: data!)
                     
-                    
-                    self.delegate.dataReady()
+                    //updating UI must be done from the main thread
+                    DispatchQueue.main.async {
+                        self.delegate.dataReady()
+                    }
                     print("Response: \(response)")
                     print("DATA:\n\(string)\nEND DATA\n")
                 }
             }).resume()
         }
-        
-        //let ephemeralSession = URLSession(configuration: ephemeralConfiguration, delegate: delegate, delegateQueue: operationQueue)
-
-        
     }
+    
+    //sets the ethPriceVariable
     func setEthPriceFromData(info: Data){
         let json = JSON(data: info)
         let usPrice = json["USD"].doubleValue
