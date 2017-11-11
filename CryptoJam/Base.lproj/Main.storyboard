@@ -75,6 +75,7 @@
                     <tabBarItem key="tabBarItem" title="Buy/Sell" id="xcU-vI-84I" userLabel="Item 4"/>
                     <connections>
                         <outlet property="buySellSegmentedControl" destination="YD9-El-lRk" id="bdp-hE-et2"/>
+                        <outlet property="executeTxn" destination="uOA-BV-YBy" id="ZTE-5u-icH"/>
                         <outlet property="txnLabel" destination="5tM-em-dxV" id="uxQ-jo-qrp"/>
                     </connections>
                 </viewController>

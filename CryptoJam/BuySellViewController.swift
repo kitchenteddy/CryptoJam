@@ -27,18 +27,24 @@ class BuySellViewController: ViewController {
     @IBOutlet weak var txnLabel: UILabel!
   
     
+    @IBOutlet weak var executeTxn: UIButton!
+    
     @IBAction func executeTxn(_ sender: AnyObject) {
     }
 
+    
+    
     @IBAction func enterMaxValue(_ sender: AnyObject) {
     }
     
     
     func setBuyMode(){
+        executeTxn.setTitle("Buy", for: UIControlState.normal)
         print("BUY MODE")
     }
     
     func setSellMode(){
+        executeTxn.setTitle("Sell", for: UIControlState.normal)
         print("SELL MODE")
     }
     
