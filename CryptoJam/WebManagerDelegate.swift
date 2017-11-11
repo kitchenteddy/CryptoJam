@@ -10,5 +10,5 @@ import Foundation
 
 
 protocol WebManagerDelegate {
-    func dataReady()
+    func dataReady(manager: WebDataManager)
 }

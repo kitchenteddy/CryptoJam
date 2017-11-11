@@ -9,41 +9,58 @@
 import Foundation
 import UIKit
 
-
-
-class PriceDisplayViewController: ViewController, WebManagerDelegate {
+class PriceDisplayViewController: ViewController {
     
-    var dataManager: WebDataManager?
+    //var dataManager: WebDataManager?
     
-
     @IBOutlet weak var ethPriceLabel: UILabel!
+    var updateTimer = Timer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.dataManager = WebDataManager(delegate: self)
-        //_ = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.dataManager!.startUrlSession), userInfo: nil, repeats: true)
-        self.dataManager!.startUrlSession()
         // Do any additional setup after loading the view, typically from a nib.
     }
     
-    
-    
-    override func dataReady() {
-        
-        print(dataManager?.ethPrice)
-        if let price = dataManager?.ethPrice{
-            ethPriceLabel.text = ("1 ETH = \(price)")
-            
-        } else {
-            print("price is nil")
-        }
-        
+    override func viewDidAppear(_ animated: Bool) {
+        print("view did appear")
+        startDataImport()
+        startUpdatingPriceData()
     }
     
-    
+    override func viewDidDisappear(_ animated: Bool) {
+        print("view did disappear")
+        stopUpdatingPriceData()
+    }
     
 
     
+    
+    
+    //
+    //TIMER FUNCTIONS
+    //
+    
+    func stopUpdatingPriceData(){
+        updateTimer.invalidate()
+    }
+    func startUpdatingPriceData(){
+        // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
+        updateTimer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.startDataImport), userInfo: nil, repeats: true)
+    }
+    
+    //
+    //Responds to data being ready for display
+    override func dataReady(manager: WebDataManager) {
+        print(manager.ethPrice)
+        if let price = manager.ethPrice{
+            ethPriceLabel.text = ("1 ETH = $\(price)")
+        } else {
+            ethPriceLabel.text = "Price Loading..."
+        }
+        
+        print("price is nil")
+    }
+
     func textField(textField: UITextField,
                    shouldChangeCharactersInRange range: NSRange,
                    replacementString string: String)
@@ -53,17 +70,11 @@ class PriceDisplayViewController: ViewController, WebManagerDelegate {
     
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let price = dataManager?.ethPrice {
-            print(price)
-        } else {
+        let dataManager = WebDataManager(delegate: self)
+        guard let price = dataManager.ethPrice else {
             print("ethPrice is nil")
+            return
         }
-        if (dataManager == nil){
-            print("data manager not initialized")
-        }
+        print(price)
     }
-    
-    
-    
-    
 }

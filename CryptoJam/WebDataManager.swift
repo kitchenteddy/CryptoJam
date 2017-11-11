@@ -31,7 +31,7 @@ class WebDataManager: NSObject {
             (sessionWithoutADelegate.dataTask(with: url) { (data, response, error) in
                 if let error = error {
                     print("Error: \(error)")
-                } else if let response = response,
+                } else if let _ = response,
                     let info = data,
                     let string = String(data: info, encoding: .utf8) {
                     self.data = string
@@ -40,9 +40,8 @@ class WebDataManager: NSObject {
                     
                     //updating UI must be done from the main thread
                     DispatchQueue.main.async {
-                        self.delegate.dataReady()
+                        self.delegate.dataReady(manager: self)
                     }
-                    print("Response: \(response)")
                     print("DATA:\n\(string)\nEND DATA\n")
                 }
             }).resume()

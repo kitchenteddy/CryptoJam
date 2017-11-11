@@ -64,6 +64,7 @@ class AddMoneyViewController: ViewController, UITextFieldDelegate {
         let txnHandler = TransactionHandler()
         txnHandler.addDollars(amount: amount)
         addMoneyTextField.text = ""
+
         setCurrentFundsDisplay()
         
     }
@@ -82,7 +83,7 @@ class AddMoneyViewController: ViewController, UITextFieldDelegate {
     }
     
     
-    override func dataReady() {
+    override func dataReady(manager: WebDataManager) {
         print("dataReady in add money view controller")
     }
 

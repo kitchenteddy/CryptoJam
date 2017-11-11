@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, WebManagerDelegate{
 
     
 
@@ -19,15 +19,19 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    func dataReady() {
+    
+    //Begins the URLSession to import our price data
+    func startDataImport(){
+        let dataManager = WebDataManager(delegate: self)
+        dataManager.startUrlSession()
+        print("data import started")
+    }
+    
+    
+    //Since this class conforms to
+    func dataReady(manager: WebDataManager) {
         preconditionFailure("This method must be overridden")
     }
-
-    
-    
-
-    
-
 }
 
 

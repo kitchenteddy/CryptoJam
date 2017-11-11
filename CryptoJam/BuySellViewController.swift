@@ -42,7 +42,7 @@ class BuySellViewController: ViewController {
         print("SELL MODE")
     }
     
-    override func dataReady() {
+    override func dataReady(manager: WebDataManager) {
         print("dataReady in buy sell view controller")
     }
     
