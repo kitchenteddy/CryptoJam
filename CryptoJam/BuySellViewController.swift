@@ -14,8 +14,12 @@ class BuySellViewController: ViewController, UITextFieldDelegate  {
     var updateTimer = Timer()
     var ethPrice: Double?
     
+    //txn Amt = Integer describing how many cents are entered.  ie 357 = $3.57
+    var txnAmt: Int = 0
+    
     override func viewDidLoad() {
         amountField.delegate = self
+        amountField.placeholder = updateTxnAmount()
         amountField.keyboardType = UIKeyboardType.decimalPad
     }
     
@@ -83,23 +87,30 @@ class BuySellViewController: ViewController, UITextFieldDelegate  {
             // with the new content added to it.
             // If the contents still fit the constraints, allow the change
             // by returning true; otherwise disallow the change by returning false.
-            if string.characters.count == 0 {
-                return true
+            
+            if let digit = Int(string){
+                
+                if (txnAmt>999999999){
+                    amountField.text = updateTxnAmount()
+                    return false
+                }
+                txnAmt = txnAmt * 10 + digit
+                amountField.text = updateTxnAmount()
             }
-            let currentNsString = textField.text as NSString?
-            
-            guard let prospectiveText = currentNsString?.replacingCharacters(in: range, with: string) else {return true}
-            
-            let decimalSeparator = NSLocale.current.decimalSeparator ?? "."
-            
-            
-            return prospectiveText.isNumeric() &&
-                prospectiveText.doesNotContainCharactersIn(matchCharacters: "-e" + decimalSeparator) &&
-                prospectiveText.characters.count <= 8
+            if string == "" {
+                print("DELETE PRESSED")
+                txnAmt = txnAmt / 10
+                amountField.text = updateTxnAmount()
+            }
+            return false
     }
     
-    
-    
+    func updateTxnAmount() -> String? {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = NumberFormatter.Style.currency
+        let amount = Double(txnAmt/100) + Double(txnAmt%100)/100
+        return formatter.string(from: NSNumber(value: amount))
+    }
     
     //
     //TIMER FUNCTIONS
