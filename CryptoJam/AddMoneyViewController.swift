@@ -10,9 +10,13 @@ import Foundation
 import UIKit
 class AddMoneyViewController: ViewController, UITextFieldDelegate {
     
+    //txnAmt = Integer describing how many cents are entered.  ie 357 = $3.57
+    var txnAmt: Int = 0
+    
     override func viewDidLoad() {
         addMoneyTextField.delegate = self
         addMoneyTextField.keyboardType = UIKeyboardType.decimalPad
+        addMoneyTextField.placeholder = updateTxnAmount()
         setCurrentFundsDisplay()
     }
     
@@ -21,25 +25,31 @@ class AddMoneyViewController: ViewController, UITextFieldDelegate {
                    replacementString string: String)
         -> Bool{
             
-            // Check to see if the text field's contents still fit the constraints
-            // with the new content added to it.
-            // If the contents still fit the constraints, allow the change
-            // by returning true; otherwise disallow the change by returning false.
-            if string.characters.count == 0 {
-                return true
+            if let digit = Int(string){
+                
+                if (txnAmt>999999999){
+                    addMoneyTextField.text = updateTxnAmount()
+                    return false
+                }
+                txnAmt = txnAmt * 10 + digit
+                addMoneyTextField.text = updateTxnAmount()
             }
-            let currentNsString = textField.text as NSString?
-    
-            guard let prospectiveText = currentNsString?.replacingCharacters(in: range, with: string) else {return true}
+            if string == "" {
+                print("DELETE PRESSED")
+                txnAmt = txnAmt / 10
+                addMoneyTextField.text = updateTxnAmount()
+            }
+            return false
 
-            let decimalSeparator = NSLocale.current.decimalSeparator ?? "."
-        
-            
-            return prospectiveText.isNumeric() &&
-                    prospectiveText.doesNotContainCharactersIn(matchCharacters: "-e" + decimalSeparator) &&
-                    prospectiveText.characters.count <= 8
     }
     
+    
+    func updateTxnAmount() -> String? {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = NumberFormatter.Style.currency
+        let amount = Double(txnAmt/100) + Double(txnAmt%100)/100
+        return formatter.string(from: NSNumber(value: amount))
+    }
 
     @IBOutlet weak var addMoneyTextField: UITextField!
     
@@ -51,21 +61,15 @@ class AddMoneyViewController: ViewController, UITextFieldDelegate {
     }
     
     @IBAction func addFunds(_ sender: AnyObject) {
-        guard let rawText = addMoneyTextField.text else{
-            print("no text")
-            return
-        }
         
-        guard let amount = Double(rawText) else {
-            print("text is invalid double")
-            return
-        }
         
+        let amount = Double(txnAmt) / 100.0
         let txnHandler = TransactionHandler()
         txnHandler.addDollars(amount: amount)
         addMoneyTextField.text = ""
-
+        txnAmt = 0
         setCurrentFundsDisplay()
+        
         
     }
     

@@ -14,7 +14,7 @@ class BuySellViewController: ViewController, UITextFieldDelegate  {
     var updateTimer = Timer()
     var ethPrice: Double?
     
-    //txn Amt = Integer describing how many cents are entered.  ie 357 = $3.57
+    //txnAmt = Integer describing how many cents are entered.  ie 357 = $3.57
     var txnAmt: Int = 0
     
     override func viewDidLoad() {
@@ -82,11 +82,6 @@ class BuySellViewController: ViewController, UITextFieldDelegate  {
                    shouldChangeCharactersIn range: NSRange,
                    replacementString string: String)
         -> Bool{
-            
-            // Check to see if the text field's contents still fit the constraints
-            // with the new content added to it.
-            // If the contents still fit the constraints, allow the change
-            // by returning true; otherwise disallow the change by returning false.
             
             if let digit = Int(string){
                 
