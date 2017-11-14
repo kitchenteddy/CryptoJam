@@ -17,8 +17,14 @@ class AddMoneyViewController: ViewController, UITextFieldDelegate {
         addMoneyTextField.delegate = self
         addMoneyTextField.keyboardType = UIKeyboardType.decimalPad
         addMoneyTextField.placeholder = updateTxnAmount()
+    }
+    
+    
+    override func viewDidAppear(_ animated: Bool){
         setCurrentFundsDisplay()
     }
+    
+    
     
     func textField(_ textField: UITextField,
                    shouldChangeCharactersIn range: NSRange,
@@ -63,7 +69,7 @@ class AddMoneyViewController: ViewController, UITextFieldDelegate {
     @IBAction func addFunds(_ sender: AnyObject) {
         
         
-        let amount = Double(txnAmt) / 100.0
+        let amount = txnAmt
         let txnHandler = TransactionHandler()
         txnHandler.addDollars(amount: amount)
         addMoneyTextField.text = ""
@@ -77,12 +83,11 @@ class AddMoneyViewController: ViewController, UITextFieldDelegate {
     func setCurrentFundsDisplay() {
         
         let defaults = UserDefaults()
-        let currentFunds = defaults.double(forKey: "currentFunds")
-        
+        let currentFunds = defaults.double(forKey: "currentFunds") / 100 //integer stored is value in cents, convert it to dollars
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
-        if let formattedTipAmount = formatter.string(from: currentFunds as NSNumber) {
-            currentFundsTextField.text = formattedTipAmount
+        if let formattedAmount = formatter.string(from: currentFunds as NSNumber) {
+            currentFundsTextField.text = formattedAmount
         }
     }
     

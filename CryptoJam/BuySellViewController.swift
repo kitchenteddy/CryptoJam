@@ -46,21 +46,36 @@ class BuySellViewController: ViewController, UITextFieldDelegate  {
     }
     
     @IBOutlet weak var txnLabel: UILabel!
+    
+    
+    @IBOutlet weak var holdingsLabel: UILabel!
   
     
     @IBOutlet weak var executeTxn: UIButton!
     
     @IBAction func executeTxn(_ sender: AnyObject) {
-        let refreshAlert = UIAlertController(title: "Refresh", message: "All data will be lost.", preferredStyle: UIAlertControllerStyle.alert)
+        let handler = TransactionHandler()
+        
+        guard let price = ethPrice else {
+            print("no eth price")
+            return
+        }
+        
+        let refreshAlert = UIAlertController(title: "Confirmation", message: "All data will be lost.", preferredStyle: UIAlertControllerStyle.alert)
         
         refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
-            print("Handle Ok logic here")
+            let answer = handler.buyEther(enteredAmount: self.txnAmt, price: price)
+            if (!answer){
+                print("insuficient Funds")
+            }
+            
         }))
         
         refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
-            print("Handle Cancel Logic here")
+            return
         }))
-        
+        txnAmt = 0
+        amountField.text = updateTxnAmount()
         present(refreshAlert, animated: true, completion: nil)
     }
 
@@ -138,6 +153,7 @@ class BuySellViewController: ViewController, UITextFieldDelegate  {
         guard let price = manager.ethPrice else{
             return
         }
+        ethPrice = price
         txnLabel.text = "Buy or sell Ether for \(price) each"
         print("dataReady in buy sell view controller")
     }

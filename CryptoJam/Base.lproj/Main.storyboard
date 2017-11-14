@@ -62,6 +62,13 @@
                                     <action selector="buySellSegmentedAction:" destination="TOB-ed-PoG" eventType="valueChanged" id="X8A-FB-y0L"/>
                                 </connections>
                             </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0.00 ETH = $0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mhh-Qo-NmS">
+                                <frame key="frameInset" minX="16" minY="207" width="343" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <connections>
@@ -73,6 +80,7 @@
                         <outlet property="amountField" destination="u3i-l5-Rm0" id="Chg-Sf-KZE"/>
                         <outlet property="buySellSegmentedControl" destination="YD9-El-lRk" id="bdp-hE-et2"/>
                         <outlet property="executeTxn" destination="uOA-BV-YBy" id="ZTE-5u-icH"/>
+                        <outlet property="holdingsLabel" destination="Mhh-Qo-NmS" id="1xL-qx-nk6"/>
                         <outlet property="txnLabel" destination="5tM-em-dxV" id="uxQ-jo-qrp"/>
                     </connections>
                 </viewController>

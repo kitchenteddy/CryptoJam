@@ -9,9 +9,6 @@
 import UIKit
 
 class ViewController: UIViewController, WebManagerDelegate{
-
-    
-
     
     
     override func didReceiveMemoryWarning() {
@@ -33,9 +30,5 @@ class ViewController: UIViewController, WebManagerDelegate{
         preconditionFailure("This method must be overridden")
     }
 }
-
-
-
-
 
 

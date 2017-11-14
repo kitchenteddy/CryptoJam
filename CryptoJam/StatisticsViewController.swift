@@ -12,6 +12,4 @@ class StatisticsViewController: ViewController {
     override func dataReady(manager: WebDataManager) {
         print("dataReady in statistics view controller")
     }
-    
-    
 }

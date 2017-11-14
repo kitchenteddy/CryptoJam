@@ -40,6 +40,8 @@ class PriceDisplayViewController: ViewController {
     func stopUpdatingPriceData(){
         updateTimer.invalidate()
     }
+    
+    
     func startUpdatingPriceData(){
         // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
         updateTimer = Timer.scheduledTimer(timeInterval: 15, target: self, selector: #selector(self.startDataImport), userInfo: nil, repeats: true)
