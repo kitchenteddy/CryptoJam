@@ -41,7 +41,7 @@ class AddMoneyViewController: ViewController, UITextFieldDelegate {
                 addMoneyTextField.text = updateTxnAmount()
             }
             if string == "" {
-                print("DELETE PRESSED")
+                //Delete Pressed
                 txnAmt = txnAmt / 10
                 addMoneyTextField.text = updateTxnAmount()
             }

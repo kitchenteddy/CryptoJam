@@ -19,17 +19,26 @@ class TransactionHandler {
 //requests an ether transaction based on current price and funds
 //returns true if user has sufficient funds and the Txn is executed
 //returns false if user has insufficient funds and the Txn is rejected
-    func buyEther(enteredAmount: Int, price: Double) -> Bool{
+    func buySellEther(enteredAmount: Int, price: Double) -> Bool{
         let defaults = UserDefaults()
         let currentFunds = defaults.integer(forKey: CURRENT_FUNDS)
-        if(enteredAmount > currentFunds){
+        
+        print("entered amount = \(enteredAmount)")
+        print("current funds = \(currentFunds)")
+        
+        let newDollarBalance = currentFunds - enteredAmount
+        let etherBalance = defaults.double(forKey: ETHER_BALANCE)
+        let dollarsEntered = Double(enteredAmount)/100.0
+        let toAdd =  Double(dollarsEntered)/price
+        let newEtherBalance = etherBalance + toAdd
+        
+        //if we do not have enough dollars or ether, reject the transaction
+        if(newDollarBalance < 0 || newEtherBalance < 0){
             return false
         } else {
-            let newDollarBalance = currentFunds - enteredAmount
+            
             defaults.set(newDollarBalance, forKey: CURRENT_FUNDS)
-            let etherBalance = defaults.double(forKey: ETHER_BALANCE)
-            let toAdd =  Double(enteredAmount)/price
-            let newEtherBalance = etherBalance + toAdd
+            
             defaults.set(newEtherBalance, forKey: ETHER_BALANCE)
             print(newEtherBalance)
             return true
@@ -48,6 +57,21 @@ class TransactionHandler {
     
     func sellEth(){
         
+    }
+    
+    func getCurrentFunds() -> Int {
+        let defaults = UserDefaults()
+        return defaults.integer(forKey: CURRENT_FUNDS)
+    }
+    
+    func getEtherBalance() -> Double{
+        let defaults = UserDefaults()
+        return defaults.double(forKey: ETHER_BALANCE)
+    }
+    
+    func getDollarsAdded() -> Double{
+        let defaults = UserDefaults()
+        return defaults.double(forKey: DOLLARS_ADDED)
     }
     
 }

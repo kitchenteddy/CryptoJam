@@ -13,6 +13,9 @@ class BuySellViewController: ViewController, UITextFieldDelegate  {
     
     var updateTimer = Timer()
     var ethPrice: Double?
+    var ethBalance: Double?
+    var mode: TransactionType = .buy
+    
     
     //txnAmt = Integer describing how many cents are entered.  ie 357 = $3.57
     var txnAmt: Int = 0
@@ -24,13 +27,12 @@ class BuySellViewController: ViewController, UITextFieldDelegate  {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        print("view did appear")
         startDataImport()
+        setCurrentBalanceDisplay()
         startUpdatingPriceData()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        print("view did disappear")
         stopUpdatingPriceData()
     }
     
@@ -54,30 +56,54 @@ class BuySellViewController: ViewController, UITextFieldDelegate  {
     @IBOutlet weak var executeTxn: UIButton!
     
     @IBAction func executeTxn(_ sender: AnyObject) {
+        print("Pre Executed self.txnAmt = \(self.txnAmt)")
+        
         let handler = TransactionHandler()
         
         guard let price = ethPrice else {
-            print("no eth price")
+            print("no eth price for Action: executeTxn")
             return
         }
         
-        let refreshAlert = UIAlertController(title: "Confirmation", message: "All data will be lost.", preferredStyle: UIAlertControllerStyle.alert)
+        let failureAlert = UIAlertController(title: "Error", message: "Insufficient Funds for Transaction", preferredStyle: UIAlertControllerStyle.alert)
+        failureAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+            print("txn failed due to insufficient funds")
+        }))
         
-        refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
-            let answer = handler.buyEther(enteredAmount: self.txnAmt, price: price)
-            if (!answer){
-                print("insuficient Funds")
+        
+        let transactionAlert = UIAlertController(title: "Confirmation", message: "Purchase X ethereum for Y dollars?", preferredStyle: UIAlertControllerStyle.alert)
+        
+        transactionAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+            switch self.mode{
+            case .buy:
+                print("buy transaction")
+            case.sell:
+                print("sell transaction")
+                self.txnAmt = self.txnAmt * -1
             }
+            
+            
+            print("Executed self.txnAmt = \(self.txnAmt)")
+            let answer = handler.buySellEther(enteredAmount: self.txnAmt, price: price)
+            if (!answer){
+                //present another dialog
+                self.present(failureAlert, animated: true, completion: nil)
+                print("insuficient Funds for transaction")
+            }
+            self.txnAmt = 0
+            self.amountField.text = self.updateTxnAmount()
+            self.setCurrentBalanceDisplay()
             
         }))
         
-        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+        transactionAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
             return
         }))
-        txnAmt = 0
-        amountField.text = updateTxnAmount()
-        present(refreshAlert, animated: true, completion: nil)
+        
+        self.present(transactionAlert, animated: true, completion: nil)
+        
     }
+    
 
     
     @IBAction func enterMaxValue(_ sender: AnyObject) {
@@ -88,7 +114,7 @@ class BuySellViewController: ViewController, UITextFieldDelegate  {
 
     @IBAction func userTappedBackgroundWithSender(_ sender: AnyObject) {
         
-        print("USER TAPPED BACKGROUND")
+        print("Background tapped self.txnAmt = \(self.txnAmt)")
         view.endEditing(true)
     }
     
@@ -137,11 +163,13 @@ class BuySellViewController: ViewController, UITextFieldDelegate  {
     
     //Make changes
     func setBuyMode(){
+        self.mode = .buy
         executeTxn.setTitle("Buy", for: UIControlState.normal)
         print("BUY MODE")
     }
     
     func setSellMode(){
+        self.mode = .sell
         executeTxn.setTitle("Sell", for: UIControlState.normal)
         print("SELL MODE")
     }
@@ -159,7 +187,24 @@ class BuySellViewController: ViewController, UITextFieldDelegate  {
     }
     
 
+    func setCurrentBalanceDisplay() {
+        
+        
+        let txnHandler = TransactionHandler()
+        let current = txnHandler.getEtherBalance()
+        print("ETHER BALANCE = \(current)")
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        if let formattedAmount = formatter.string(from: current as NSNumber) {
+            holdingsLabel.text = "\(formattedAmount) ETH = $0.00"
+        }
+    }
     
+    //Enumeration to determine what mode we are in
+    enum TransactionType {
+        case buy
+        case sell
+    }
     
     
 }
