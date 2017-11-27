@@ -107,7 +107,8 @@ class BuySellViewController: ViewController, UITextFieldDelegate  {
 
     
     @IBAction func enterMaxValue(_ sender: AnyObject) {
-        //IMPLEMENT
+        self.txnAmt = getMaxTxnAmount()
+        amountField.text = updateTxnAmount()
     }
     
     @IBOutlet weak var amountField: UITextField!
@@ -181,12 +182,33 @@ class BuySellViewController: ViewController, UITextFieldDelegate  {
         guard let price = manager.ethPrice else{
             return
         }
-        ethPrice = price
+        self.ethPrice = price
         txnLabel.text = "Buy or sell Ether for \(price) each"
         print("dataReady in buy sell view controller")
+        setCurrentBalanceDisplay()
     }
     
 
+    func getMaxTxnAmount() -> Int {
+        let handler = TransactionHandler()
+        switch self.mode{
+        case .buy:
+            // return available funds
+            return handler.getCurrentFunds()
+        case .sell:
+            if let rate = self.ethPrice{
+                let ether = handler.getEtherBalance()
+                let toReturn = Int(ether * rate * 100)
+                return toReturn
+            } else {
+                
+                
+                return 0
+            }
+            
+        }
+    }
+    
     func setCurrentBalanceDisplay() {
         
         
@@ -194,9 +216,18 @@ class BuySellViewController: ViewController, UITextFieldDelegate  {
         let current = txnHandler.getEtherBalance()
         print("ETHER BALANCE = \(current)")
         let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
+        formatter.numberStyle = .decimal
+        //formatter.numberStyle = .currency
         if let formattedAmount = formatter.string(from: current as NSNumber) {
-            holdingsLabel.text = "\(formattedAmount) ETH = $0.00"
+            guard let ethRate = self.ethPrice else {
+                holdingsLabel.text = "\(formattedAmount) ETH"
+                return
+            }
+            let ethValue = current * ethRate
+            formatter.numberStyle = .currency
+            if let formattedEthValue = formatter.string(from: ethValue as NSNumber){
+                holdingsLabel.text = "\(formattedAmount) ETH = \(formattedEthValue)"
+            }
         }
     }
     
