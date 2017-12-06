@@ -15,6 +15,7 @@ class WebDataManager: NSObject {
     //
     var data: String?
     var ethPrice: Double?
+    var btcPrice: Double?
     var delegate: WebManagerDelegate
     
     
@@ -27,7 +28,7 @@ class WebDataManager: NSObject {
 
         let ephemeralConfiguration = URLSessionConfiguration.ephemeral
         let sessionWithoutADelegate = URLSession(configuration: ephemeralConfiguration)
-        if let url = URL(string:"https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD") {
+        if let url = URL(string:"https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH&tsyms=USD,EUR") {
             (sessionWithoutADelegate.dataTask(with: url) { (data, response, error) in
                 if let error = error {
                     print("Error: \(error)")
@@ -36,7 +37,7 @@ class WebDataManager: NSObject {
                     let string = String(data: info, encoding: .utf8) {
                     self.data = string
                     
-                    self .setEthPriceFromData(info: data!)
+                    self.setPriceFromData(info: data!)
                     
                     //updating UI must be done from the main thread
                     DispatchQueue.main.async {
@@ -48,11 +49,11 @@ class WebDataManager: NSObject {
         }
     }
     
-    //sets the ethPriceVariable
-    func setEthPriceFromData(info: Data){
+    //sets the Price Variables
+    func setPriceFromData(info: Data){
         let json = JSON(data: info)
-        let usPrice = json["USD"].doubleValue
-        self.ethPrice = usPrice
+        self.ethPrice = json["ETH"]["USD"].doubleValue
+        self.btcPrice = json["BTC"]["USD"].doubleValue
         
     }
     

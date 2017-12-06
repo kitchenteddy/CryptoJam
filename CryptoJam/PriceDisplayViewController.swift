@@ -15,6 +15,9 @@ class PriceDisplayViewController: ViewController {
     
     @IBOutlet weak var ethPriceLabel: UILabel!
     var updateTimer = Timer()
+
+    @IBOutlet weak var btcPriceLabel: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,10 +54,11 @@ class PriceDisplayViewController: ViewController {
     //Responds to data being ready for display
     override func dataReady(manager: WebDataManager) {
         print(manager.ethPrice)
-        if let price = manager.ethPrice{
-            ethPriceLabel.text = ("1 ETH = $\(price)")
-        } else {
-            ethPriceLabel.text = "Price Loading..."
+        if let ethPrice = manager.ethPrice{
+            ethPriceLabel.text = ("1 ETH = $\(ethPrice)")
+        }
+        if let btcPrice = manager.btcPrice{
+            btcPriceLabel.text = ("1 BTC = $\(btcPrice)")
         }
         
         print("price is nil")
