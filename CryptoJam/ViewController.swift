@@ -18,7 +18,7 @@ class ViewController: UIViewController, WebManagerDelegate{
 
     
     //Begins the URLSession to import our price data
-    func startDataImport(){
+    @objc func startDataImport(){
         let dataManager = WebDataManager(delegate: self)
         dataManager.startUrlSession()
         print("data import started")

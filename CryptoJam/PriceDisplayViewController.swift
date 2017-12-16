@@ -53,7 +53,7 @@ class PriceDisplayViewController: ViewController {
     //
     //Responds to data being ready for display
     override func dataReady(manager: WebDataManager) {
-        print(manager.ethPrice)
+        
         if let ethPrice = manager.ethPrice{
             ethPriceLabel.text = ("1 ETH = $\(ethPrice)")
         }
