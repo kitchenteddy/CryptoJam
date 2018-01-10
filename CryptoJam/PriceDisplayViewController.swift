@@ -18,6 +18,7 @@ class PriceDisplayViewController: ViewController {
 
     @IBOutlet weak var btcPriceLabel: UILabel!
     
+    @IBOutlet weak var ltcPriceLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,14 +55,19 @@ class PriceDisplayViewController: ViewController {
     //Responds to data being ready for display
     override func dataReady(manager: WebDataManager) {
         
+        
+        print("ltcPrice in viewController = \(manager.ltcPrice)")
+        
         if let ethPrice = manager.ethPrice{
             ethPriceLabel.text = ("1 ETH = $\(ethPrice)")
         }
         if let btcPrice = manager.btcPrice{
             btcPriceLabel.text = ("1 BTC = $\(btcPrice)")
         }
+        if let ltcPrice = manager.ltcPrice{
+            ltcPriceLabel.text = ("1 LTC = $\(ltcPrice)")
+        }
         
-        print("price is nil")
     }
 
     func textField(textField: UITextField,

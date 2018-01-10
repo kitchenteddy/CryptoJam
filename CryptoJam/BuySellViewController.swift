@@ -71,7 +71,7 @@ class BuySellViewController: ViewController, UITextFieldDelegate  {
         }))
         
         
-        let transactionAlert = UIAlertController(title: "Confirmation", message: "Purchase X ethereum for Y dollars?", preferredStyle: UIAlertControllerStyle.alert)
+        let transactionAlert = UIAlertController(title: "Confirmation", message: "Purchase ethereum for the indicated price?", preferredStyle: UIAlertControllerStyle.alert)
         
         transactionAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
             switch self.mode{
@@ -183,7 +183,7 @@ class BuySellViewController: ViewController, UITextFieldDelegate  {
             return
         }
         self.ethPrice = price
-        txnLabel.text = "Buy or sell Ether for \(price) each"
+        txnLabel.text = "Buy or sell Ether for $\(price) each"
         print("dataReady in buy sell view controller")
         setCurrentBalanceDisplay()
     }

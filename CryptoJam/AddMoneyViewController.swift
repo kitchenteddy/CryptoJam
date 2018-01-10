@@ -79,6 +79,12 @@ class AddMoneyViewController: ViewController, UITextFieldDelegate {
         
     }
     
+    @IBAction func resetAllFunds(_ sender: Any) {
+        let txnHandler = TransactionHandler()
+        txnHandler.resetAllFunds()
+        setCurrentFundsDisplay()
+         
+    }
     
     func setCurrentFundsDisplay() {
         

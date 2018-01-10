@@ -59,6 +59,15 @@ class TransactionHandler {
         
     }
     
+    
+    func resetAllFunds(){
+        let defaults = UserDefaults()
+        defaults.set(0, forKey: CURRENT_FUNDS)
+        defaults.set(0, forKey: ETHER_BALANCE)
+        defaults.set(0, forKey: DOLLARS_ADDED)
+    }
+    
+    
     func getCurrentFunds() -> Int {
         let defaults = UserDefaults()
         return defaults.integer(forKey: CURRENT_FUNDS)
@@ -69,9 +78,9 @@ class TransactionHandler {
         return defaults.double(forKey: ETHER_BALANCE)
     }
     
-    func getDollarsAdded() -> Double{
+    func getDollarsAdded() -> Int{
         let defaults = UserDefaults()
-        return defaults.double(forKey: DOLLARS_ADDED)
+        return defaults.integer(forKey: DOLLARS_ADDED)
     }
     
 }

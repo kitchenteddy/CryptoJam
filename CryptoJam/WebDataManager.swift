@@ -16,6 +16,7 @@ class WebDataManager: NSObject {
     var data: String?
     var ethPrice: Double?
     var btcPrice: Double?
+    var ltcPrice: Double?
     var delegate: WebManagerDelegate
     
     
@@ -28,7 +29,7 @@ class WebDataManager: NSObject {
 
         let ephemeralConfiguration = URLSessionConfiguration.ephemeral
         let sessionWithoutADelegate = URLSession(configuration: ephemeralConfiguration)
-        if let url = URL(string:"https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH&tsyms=USD,EUR") {
+        if let url = URL(string:"https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,LTC&tsyms=USD") {
             (sessionWithoutADelegate.dataTask(with: url) { (data, response, error) in
                 if let error = error {
                     print("Error: \(error)")
@@ -54,6 +55,10 @@ class WebDataManager: NSObject {
         let json = JSON(data: info)
         self.ethPrice = json["ETH"]["USD"].doubleValue
         self.btcPrice = json["BTC"]["USD"].doubleValue
+        self.ltcPrice = json["LTC"]["USD"].doubleValue
+        
+        print("ltcPrice in data manager = \(self.ltcPrice)")
+        
         
     }
     
